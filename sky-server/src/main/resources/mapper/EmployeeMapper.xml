@@ -11,7 +11,7 @@
         </where>
         order by create_time desc
     </select>
-    <update id="update">
+    <update id="update" parameterType="Employee">
         update employee
         <set>
             <if test="name != null and name != ''">
@@ -30,13 +30,13 @@
                 phone = #{phone},
             </if>
             <if test="idNumber != null">
-                idNumber = #{idNumber},
+                id_number = #{idNumber},
             </if>
             <if test="updateTime != null">
-                updateTime = #{updateTime},
+                update_time = #{updateTime},
             </if>
             <if test="updateUser != null">
-                updateUser = #{updateUser},
+                update_user = #{updateUser},
             </if>
             <if test="status != null">
                 status = #{status},
@@ -45,4 +45,7 @@
         </set>
         where id = #{id}
     </update>
+<!-- 上面的代码中，如果写成id_number = #{idNumber}会找不到对应列报错，因为数据库中的列名是id_number，而实体类中的属性名是idNumber-->
+
 </mapper>
+
